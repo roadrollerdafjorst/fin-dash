@@ -2,13 +2,11 @@ import DashboardBox from '@/components/DashboardBox';
 import FlexBetween from '@/components/FlexBetween';
 import { useGetKpisQuery } from '@/state/api';
 import { Box, Button, Typography, useTheme } from '@mui/material'
-import React, {useMemo, useState} from 'react'
+import {useMemo, useState} from 'react'
 import { CartesianGrid, Label, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import regression, { DataPoint } from 'regression';
 
-type Props = {}
-
-const Predictions = (props: Props) => {
+const Predictions = () => {
     const {palette} = useTheme();
     const [isPredictions, setPredictions] = useState(false);
     const {data: kpiData} = useGetKpisQuery();
@@ -80,11 +78,11 @@ const Predictions = (props: Props) => {
               <YAxis
                 domain={[12000, 36000]}
                 tickFormatter={(v)=>`$${v}`}
-
                 axisLine={false} 
                 tickLine={false}
                 style={{fontSize: "10px"}}>
-                <Label value={'Revenue in USD'}
+                <Label 
+                value={'Revenue in USD'}
                 angle={-90}
                 offset={-5}
                 position={'insideLeft'} />
@@ -93,6 +91,8 @@ const Predictions = (props: Props) => {
               <Legend 
                 verticalAlign='top'
               />
+
+            {/* Target */}
               <Line 
                 type={'monotone'}
                 dataKey={'Actual Revenue'}
@@ -100,15 +100,19 @@ const Predictions = (props: Props) => {
                 strokeWidth={0}
                 dot={{strokeWidth: 5}}
               />
+
+            {/* Regression Line */}
               <Line 
                     type={'monotone'}
                     dataKey={'Regression Line'}
                     stroke={palette.tertiary[500]}
                     dot={false}
                 />
+
+            {/* Predictions */}
               {isPredictions && (
                 <Line 
-                    type={'monotone'}
+                    strokeDasharray={'5 5'}
                     dataKey={'Predicted Revenue'}
                     stroke={palette.secondary[500]}
                     dot={false}

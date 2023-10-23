@@ -124,13 +124,11 @@ const Row3 = (props: Props) => {
           </Box>
           
         </DashboardBox>
-        
 
         <DashboardBox gridArea="h" >
         <BoxHeader 
             title="Recent Orders" 
             sideText={`${transactionData?.length} latest transactions`} />
-          
           <Box
             mt={'1rem'}
             p = {'0 0.5rem'}
@@ -167,7 +165,7 @@ const Row3 = (props: Props) => {
         <FlexBetween mt="0.5rem" gap="0.5rem" p="0 1rem" textAlign="center">
           {pieChartData?.map((data, i) => (
             <Box key={`${data[0].name}-${i}`}>
-              <PieChart width={110} height={100}>
+              <PieChart width={110} height={85}>
                 <Pie
                   stroke="none"
                   data={data}

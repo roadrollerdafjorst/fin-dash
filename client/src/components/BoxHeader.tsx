@@ -15,8 +15,7 @@ const BoxHeader = ({title, subtitle, sideText, icon}: Props) => {
   return (
     <FlexBetween
         color={palette.grey[400]}
-        margin={"1.5rem 1rem 0 1rem"}
-    >
+        margin={"1rem 1rem 0 1rem"}>
         <FlexBetween>
             {icon}
             <Box width="100%">
